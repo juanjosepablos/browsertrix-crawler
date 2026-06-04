@@ -39,7 +39,7 @@ export enum QueueState {
 }
 
 // ============================================================================
-// treat 0 or 206 as 200 for purposes of dedup
+// treat 0 or 206 as 200 for purposes of dedupe
 export function normalizeDedupeStatus(status: number): string {
   if (status === 0 || status === 206) {
     return "200";
@@ -1053,7 +1053,9 @@ return inx;
   recheckScope(data: QueueEntry, seeds: ScopedSeed[]) {
     const seed = seeds[data.seedId];
 
-    return seed.isIncluded(data.url, data.depth, data.extraHops);
+    const { url, depth, extraHops } = data;
+
+    return seed.isIncluded({ url, depth, extraHops });
   }
 
   async isFinished() {
