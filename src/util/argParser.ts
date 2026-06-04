@@ -744,6 +744,13 @@ class ArgParser {
           type: "boolean",
           default: false,
         },
+
+        allowBehaviorLinks: {
+          describe:
+            "If set, permits addLink calls from behavior scripts to bypass crawl scope and ensures that the extra links are always crawled",
+          type: "boolean",
+          default: false,
+        },
       });
   }
 
